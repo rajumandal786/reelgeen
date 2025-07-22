@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReelGen by Raju Mandal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-center p-10">
+  <div class="max-w-md mx-auto bg-white shadow-xl rounded-2xl p-8">
+    <h1 class="text-2xl font-bold mb-4">🎬 ReelGen by Raju Mandal</h1>
+    <p class="mb-4 text-gray-600">Create a 15 sec AI reel with music, subtitle, and watermark.</p>
+    <input id="username" placeholder="Enter your username" class="w-full p-2 mb-3 border rounded" />
+    <textarea id="prompt" placeholder="Type your reel idea..." class="w-full p-2 mb-4 border rounded"></textarea>
+    <button onclick="generateReel()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Generate Reel</button>
+    <div id="output" class="mt-6 text-sm text-gray-700"></div>
+  </div>
+  <script>
+    function generateReel() {
+      const username = document.getElementById('username').value.trim();
+      const prompt = document.getElementById('prompt').value.trim();
+      if (!username || !prompt) {
+        alert("Please enter both username and prompt.");
+        return;
+      }
+      const dummyURL = `https://dummyreels.com/video/${encodeURIComponent(prompt)}`;
+      document.getElementById('output').innerHTML = \`
+        <p class="mt-4">🎉 Your 15-sec Reel is ready!</p>
+        <video class="mx-auto mt-2" controls width="300">
+          <source src="\${dummyURL}" type="video/mp4">
+        </video>
+        <p class="text-xs text-gray-400 mt-2">Watermark: Made by Raju Mandal</p>
+      \`;
+    }
+  </script>
+</body>
+</html>
